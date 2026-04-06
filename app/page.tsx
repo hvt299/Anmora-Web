@@ -13,6 +13,156 @@ import {
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["300", "400", "500", "700", "800"] });
 
+const InteractivePricing = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activePriceTab, setActivePriceTab] = useState<'list' | 'image'>('list');
+
+  const priceData = [
+    { vol: "50ml", type: "Cá nhân/Mang theo", price: "30.000 – 45.000 VNĐ", height: 60 },
+    { vol: "100ml", type: "Cá nhân/Văn phòng", price: "60.000 – 75.000 VNĐ", height: 100 },
+    { vol: "250ml", type: "Gia đình", price: "90.000 – 120.000 VNĐ", height: 140 },
+    { vol: "500ml", type: "Gói Refill", price: "~ 150.000 VNĐ", height: 180 },
+  ];
+
+  return (
+    <div className="space-y-6 flex flex-col">
+      <p className="text-lg font-semibold text-orange-800 leading-relaxed">
+        Chiến lược định giá theo giá trị, dựa trên chất lượng, yếu tố “xanh” và giá trị xã hội mang lại.
+      </p>
+
+      {/* 1. DÒNG 1: BANNER GIÁ CẢ & CHÍNH SÁCH LINH HOẠT */}
+      <div className="bg-linear-to-br from-orange-50 to-amber-50 rounded-3xl border border-orange-100 hover:shadow-md transition-shadow overflow-hidden">
+        <div className="w-full h-48 md:h-64 relative">
+          <img
+            src="https://img.freepik.com/photos-gratuite/assortiment-bureau-plat-espace-copie_23-2148707962.jpg"
+            alt="Chính sách giá ANMORA"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-orange-900/90 via-orange-900/30 to-transparent flex items-end p-6 md:p-8">
+            <h4 className="font-bold text-white flex items-center gap-2 text-xl md:text-2xl shadow-sm">
+              <Tag size={28} className="text-orange-300" /> Chính sách linh hoạt & Định giá
+            </h4>
+          </div>
+        </div>
+        <div className="p-6 md:p-8">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+            <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
+              ANMORA áp dụng chiến lược <strong className="text-orange-800">định giá theo giá trị</strong>, trong đó mức giá được xây dựng dựa trên <strong className="text-orange-800">chất lượng sản phẩm</strong>, <strong className="text-orange-800">yếu tố “xanh”</strong> và <strong className="text-orange-800">giá trị xã hội</strong> mà thương hiệu mang lại, thay vì cạnh tranh bằng giá thấp.
+            </p>
+            <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
+              Chính sách giá linh hoạt với <strong className="text-orange-800">combo gia đình</strong>, <strong className="text-orange-800">ưu đãi trường học & tổ chức</strong>. Khuyến mãi theo mùa: <span className="italic font-medium text-orange-700">"Back to School", Tết, Ngày Trái Đất</span>. Giá xây dựng theo tâm lý: <strong className="text-orange-800">không quá thấp</strong> để giữ hình ảnh chất lượng, nhưng <strong className="text-orange-800">không quá cao</strong> để vẫn dễ tiếp cận.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. DÒNG 2: KHỐI BIỂU ĐỒ TRỰC QUAN */}
+      <div className="bg-white rounded-3xl border border-orange-200 p-6 md:p-8 hover:shadow-md transition-shadow">
+        <h4 className="font-bold text-orange-900 mb-6 flex items-center gap-2">
+          <Tag size={20} className="text-orange-500" /> Phân khúc trung bình đến cận cao
+        </h4>
+
+        <div className="relative h-64 bg-orange-50/50 backdrop-blur-sm rounded-2xl border border-orange-100 p-4 flex items-end justify-around overflow-hidden shadow-inner">
+          {priceData.map((item, idx) => (
+            <div
+              key={idx}
+              className="relative flex flex-col items-center justify-end w-1/4 h-full cursor-pointer group"
+              onMouseEnter={() => setActiveIndex(idx)}
+              onMouseLeave={() => setActiveIndex(null)}
+            >
+              {/* Tooltip hiển thị giá khi Hover */}
+              <div className={`absolute top-0 md:top-4 whitespace-nowrap bg-orange-800 text-white text-xs md:text-sm font-bold py-1.5 px-3 rounded-lg transition-all duration-300 z-10
+                ${activeIndex === idx ? 'opacity-100 -translate-y-2 shadow-lg' : 'opacity-0 translate-y-0'}
+              `}>
+                {item.price}
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-orange-800"></div>
+              </div>
+
+              {/* Khối mô phỏng sản phẩm (Chỉ chạy animation khi User tương tác) */}
+              <motion.div
+                initial={false}
+                animate={{
+                  height: item.height,
+                  backgroundColor: activeIndex === idx ? "#ea580c" : "#fdba74",
+                  scale: activeIndex === idx ? 1.05 : 1
+                }}
+                transition={{ duration: 0.2 }}
+                className="w-12 md:w-20 rounded-t-2xl rounded-b-md shadow-md flex items-end justify-center pb-2 border-b-4 border-orange-900/20"
+              >
+                <span className="text-white font-bold text-xs -rotate-90 md:rotate-0 mb-4 md:mb-0">{item.vol}</span>
+              </motion.div>
+            </div>
+          ))}
+          {/* Đường baseline */}
+          <div className="absolute bottom-0 left-4 right-4 h-1 bg-orange-200 rounded-full"></div>
+        </div>
+      </div>
+
+      {/* 3. DÒNG 3: MENU 2 TAB (Gộp Danh mục giá và Hình ảnh sản phẩm) */}
+      <div className="bg-white rounded-3xl border border-orange-200 hover:shadow-md transition-shadow overflow-hidden">
+
+        {/* Tab Headers */}
+        <div className="flex border-b border-orange-100">
+          <button
+            onClick={() => setActivePriceTab('list')}
+            className={`flex-1 py-4 md:py-5 px-4 text-center font-bold text-sm md:text-base transition-all duration-300 
+              ${activePriceTab === 'list' ? 'bg-orange-50 text-orange-800 border-b-2 border-orange-500' : 'text-stone-500 hover:bg-stone-50 hover:text-stone-700'}
+            `}
+          >
+            Danh mục giá tham khảo
+          </button>
+          <button
+            onClick={() => setActivePriceTab('image')}
+            className={`flex-1 py-4 md:py-5 px-4 text-center font-bold text-sm md:text-base transition-all duration-300 
+              ${activePriceTab === 'image' ? 'bg-orange-50 text-orange-800 border-b-2 border-orange-500' : 'text-stone-500 hover:bg-stone-50 hover:text-stone-700'}
+            `}
+          >
+            Hình ảnh các loại sản phẩm
+          </button>
+        </div>
+
+        {/* Tab Content */}
+        <div className="p-6 md:p-8 min-h-75">
+          {activePriceTab === 'list' ? (
+            /* Nội dung Tab 1: Danh mục giá */
+            <ul className="space-y-3">
+              {priceData.map((item, idx) => (
+                <li
+                  key={idx}
+                  onMouseEnter={() => setActiveIndex(idx)}
+                  onMouseLeave={() => setActiveIndex(null)}
+                  className={`flex items-center justify-between p-4 rounded-xl transition-all cursor-pointer border
+                  ${activeIndex === idx ? 'bg-orange-100 border-orange-300 shadow-sm scale-[1.01]' : 'border-orange-50 bg-stone-50 hover:bg-orange-50/50'}
+                `}
+                >
+                  <div>
+                    <span className="text-stone-800 font-bold block">{item.vol}</span>
+                    <span className="text-stone-500 text-sm">{item.type}</span>
+                  </div>
+                  <span className={`font-bold transition-colors ${activeIndex === idx ? 'text-orange-700' : 'text-orange-600'}`}>
+                    {item.price}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            /* Nội dung Tab 2: Hình ảnh sản phẩm */
+            <div className="w-full flex justify-center p-2">
+              <img
+                src="/images/anmora-product-4.jpg"
+                alt="Các phân khúc sản phẩm ANMORA"
+                className="w-full h-auto rounded-2xl object-cover md:max-h-100"
+              />
+            </div>
+          )}
+        </div>
+
+      </div>
+
+    </div>
+  );
+};
+
 export default function InteractiveLandingPage() {
   const [currentImg, setCurrentImg] = useState(0);
   const brandImages = [
@@ -111,62 +261,7 @@ export default function InteractiveLandingPage() {
       title: "Giá cả",
       subtitle: "Price",
       icon: Tag,
-      content: (
-        <div className="space-y-6">
-          <p className="text-lg font-semibold text-orange-800 leading-relaxed">
-            Chiến lược định giá theo giá trị, dựa trên chất lượng, yếu tố “xanh” và giá trị xã hội mang lại.
-          </p>
-
-          {/* Banner Giá cả (Chính sách linh hoạt) */}
-          <div className="bg-linear-to-br from-orange-50 to-amber-50 rounded-3xl border border-orange-100 hover:shadow-md transition-shadow overflow-hidden">
-            <div className="w-full h-48 md:h-64 relative">
-              <img
-                src="https://img.freepik.com/photos-gratuite/assortiment-bureau-plat-espace-copie_23-2148707962.jpg"
-                alt="Chính sách giá ANMORA"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-orange-900/90 via-orange-900/30 to-transparent flex items-end p-6 md:p-8">
-                <h4 className="font-bold text-white flex items-center gap-2 text-xl md:text-2xl shadow-sm">
-                  <Tag size={28} className="text-orange-300" /> Chính sách linh hoạt & Định giá
-                </h4>
-              </div>
-            </div>
-            <div className="p-6 md:p-8">
-              <div className="flex flex-col md:flex-row gap-4 md:gap-8">
-                <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
-                  ANMORA áp dụng chiến lược <strong className="text-orange-800">định giá theo giá trị</strong>, trong đó mức giá được xây dựng dựa trên <strong className="text-orange-800">chất lượng sản phẩm</strong>, <strong className="text-orange-800">yếu tố “xanh”</strong> và <strong className="text-orange-800">giá trị xã hội</strong> mà thương hiệu mang lại, thay vì cạnh tranh bằng giá thấp.
-                </p>
-                <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
-                  Chính sách giá linh hoạt với <strong className="text-orange-800">combo gia đình</strong>, <strong className="text-orange-800">ưu đãi trường học & tổ chức</strong>. Khuyến mãi theo mùa: <span className="italic font-medium text-orange-700">"Back to School", Tết, Ngày Trái Đất</span>. Giá xây dựng theo tâm lý: <strong className="text-orange-800">không quá thấp</strong> để giữ hình ảnh chất lượng, nhưng <strong className="text-orange-800">không quá cao</strong> để vẫn dễ tiếp cận.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Bảng giá chi tiết */}
-          <div className="bg-white p-6 rounded-3xl border border-orange-200 hover:shadow-md transition-shadow">
-            <h4 className="font-bold text-orange-800 mb-4">Phân khúc trung bình đến cận cao:</h4>
-            <ul className="space-y-3">
-              <li className="flex items-center justify-between border-b border-orange-100 pb-2">
-                <span className="text-stone-700 font-medium">Chai 50ml</span>
-                <span className="font-bold text-orange-600">30.000 – 45.000 VNĐ</span>
-              </li>
-              <li className="flex items-center justify-between border-b border-orange-100 pb-2">
-                <span className="text-stone-700 font-medium">Chai 100ml</span>
-                <span className="font-bold text-orange-600">60.000 – 75.000 VNĐ</span>
-              </li>
-              <li className="flex items-center justify-between border-b border-orange-100 pb-2">
-                <span className="text-stone-700 font-medium">Chai 250ml</span>
-                <span className="font-bold text-orange-600">90.000 – 120.000 VNĐ</span>
-              </li>
-              <li className="flex items-center justify-between pt-1">
-                <span className="text-stone-700 font-medium">Gói Refill 500ml</span>
-                <span className="font-bold text-orange-600">~ 150.000 VNĐ</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      )
+      content: <InteractivePricing />
     },
     {
       id: "place",
