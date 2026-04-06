@@ -7,7 +7,8 @@ import {
   Play, Leaf, ShieldCheck, Heart,
   Megaphone, Touchpad, HeartHandshake, Share2,
   Box, Tag, MapPin, Rocket, Store, CheckCircle2,
-  ShoppingBag, Globe, Music, Gift, Phone, Mail, X
+  ShoppingBag, Globe, Music, Gift, Phone, Mail, X,
+  Link
 } from "lucide-react";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], weight: ["300", "400", "500", "700", "800"] });
@@ -57,29 +58,45 @@ export default function InteractiveLandingPage() {
       icon: Box,
       content: (
         <div className="space-y-6">
-          <p className="text-lg font-semibold text-emerald-800">
+          <p className="text-lg font-semibold text-emerald-800 leading-relaxed">
             ANMORA - Nước rửa tay khô thuần chay, cung cấp giải pháp vệ sinh an toàn, tiện lợi và thân thiện với môi trường.
           </p>
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="bg-stone-50 p-5 rounded-2xl border border-stone-100">
-              <h4 className="font-bold text-emerald-700 flex items-center gap-2 mb-3"><Leaf size={18} /> Thành phần</h4>
-              <p className="text-stone-600 text-sm leading-relaxed">
-                Hoạt chất chính từ cồn thực vật (mía/bắp). Glycerin (dừa/cọ) giữ ẩm, gel nha đam làm dịu da. Mùi hương từ tinh dầu thiên nhiên (tràm trà, sả chanh, oải hương, vỏ bưởi). <strong className="text-emerald-800">Không chứa paraben, hương liệu tổng hợp, chất tạo màu.</strong>
-              </p>
+
+          {/* Banner Sản phẩm (Gộp Thành phần & Đặc điểm nổi bật) */}
+          <div className="bg-linear-to-br from-emerald-50 to-teal-50 rounded-3xl border border-emerald-100 hover:shadow-md transition-shadow overflow-hidden">
+            <div className="w-full h-48 md:h-64 relative">
+              <img
+                src="/images/anmora-product-3.jpg"
+                alt="Thành phần và Đặc điểm ANMORA"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-emerald-900/90 via-emerald-900/30 to-transparent flex items-end p-6 md:p-8">
+                <h4 className="font-bold text-white flex items-center gap-2 text-xl md:text-2xl shadow-sm">
+                  <Leaf size={28} className="text-emerald-300" /> Thành phần & Đặc điểm nổi bật
+                </h4>
+              </div>
             </div>
-            <div className="bg-stone-50 p-5 rounded-2xl border border-stone-100">
-              <h4 className="font-bold text-emerald-700 flex items-center gap-2 mb-3"><ShieldCheck size={18} /> Đặc điểm nổi bật</h4>
-              <p className="text-stone-600 text-sm leading-relaxed">
-                Thuần chay 100%, không thử nghiệm trên động vật. Phù hợp cho cả người lớn và trẻ em. Làm sạch tay nhanh chóng, không gây khô rát dù sử dụng nhiều lần.
-              </p>
+            <div className="p-6 md:p-8">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+                <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
+                  Hoạt chất chính từ cồn thực vật (mía/bắp). Glycerin (dừa/cọ) giữ ẩm, gel nha đam làm dịu da. Mùi hương từ tinh dầu thiên nhiên (tràm trà, sả chanh, oải hương, vỏ bưởi). <strong className="text-emerald-800">Không chứa paraben, hương liệu tổng hợp, chất tạo màu.</strong>
+                </p>
+                <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
+                  Thuần chay 100%, không thử nghiệm trên động vật. Phù hợp cho cả người lớn và trẻ em. Làm sạch tay nhanh chóng, không gây khô rát dù sử dụng nhiều lần.
+                </p>
+              </div>
             </div>
-            <div className="bg-stone-50 p-5 rounded-2xl border border-stone-100">
+          </div>
+
+          {/* Các Card thông tin bổ sung */}
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-white p-5 rounded-2xl border border-emerald-100 hover:shadow-md transition-shadow">
               <h4 className="font-bold text-emerald-700 flex items-center gap-2 mb-3"><Box size={18} /> Danh mục</h4>
               <p className="text-stone-600 text-sm leading-relaxed">
                 Đa dạng dung tích: 50ml (tiện lợi mang theo), 100ml (cá nhân), 250ml (gia đình). Dạng refill 500ml khuyến khích tái sử dụng, giảm thiểu rác thải nhựa.
               </p>
             </div>
-            <div className="bg-stone-50 p-5 rounded-2xl border border-stone-100">
+            <div className="bg-white p-5 rounded-2xl border border-emerald-100 hover:shadow-md transition-shadow">
               <h4 className="font-bold text-emerald-700 flex items-center gap-2 mb-3"><Heart size={18} /> Bao bì & Thiết kế</h4>
               <p className="text-stone-600 text-sm leading-relaxed">
                 Vật liệu tái chế/phân hủy sinh học. Tông xanh lá chủ đạo cùng biểu tượng bàn tay sạch và trái tim xanh, tạo cảm giác thân thiện, dễ nhận diện.
@@ -96,21 +113,49 @@ export default function InteractiveLandingPage() {
       icon: Tag,
       content: (
         <div className="space-y-6">
-          <p className="text-lg font-semibold text-orange-800">
+          <p className="text-lg font-semibold text-orange-800 leading-relaxed">
             Chiến lược định giá theo giá trị, dựa trên chất lượng, yếu tố “xanh” và giá trị xã hội mang lại.
           </p>
-          <div className="bg-orange-50 p-6 rounded-3xl border border-orange-100">
+
+          {/* Banner Giá cả (Chính sách linh hoạt) */}
+          <div className="bg-linear-to-br from-orange-50 to-amber-50 rounded-3xl border border-orange-100 hover:shadow-md transition-shadow overflow-hidden">
+            <div className="w-full h-48 md:h-64 relative">
+              <img
+                src="https://img.freepik.com/photos-gratuite/assortiment-bureau-plat-espace-copie_23-2148707962.jpg"
+                alt="Chính sách giá ANMORA"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-orange-900/90 via-orange-900/30 to-transparent flex items-end p-6 md:p-8">
+                <h4 className="font-bold text-white flex items-center gap-2 text-xl md:text-2xl shadow-sm">
+                  <Tag size={28} className="text-orange-300" /> Chính sách linh hoạt & Định giá
+                </h4>
+              </div>
+            </div>
+            <div className="p-6 md:p-8">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+                <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
+                  ANMORA áp dụng chiến lược <strong className="text-orange-800">định giá theo giá trị</strong>, trong đó mức giá được xây dựng dựa trên <strong className="text-orange-800">chất lượng sản phẩm</strong>, <strong className="text-orange-800">yếu tố “xanh”</strong> và <strong className="text-orange-800">giá trị xã hội</strong> mà thương hiệu mang lại, thay vì cạnh tranh bằng giá thấp.
+                </p>
+                <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
+                  Chính sách giá linh hoạt với <strong className="text-orange-800">combo gia đình</strong>, <strong className="text-orange-800">ưu đãi trường học & tổ chức</strong>. Khuyến mãi theo mùa: <span className="italic font-medium text-orange-700">"Back to School", Tết, Ngày Trái Đất</span>. Giá xây dựng theo tâm lý: <strong className="text-orange-800">không quá thấp</strong> để giữ hình ảnh chất lượng, nhưng <strong className="text-orange-800">không quá cao</strong> để vẫn dễ tiếp cận.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bảng giá chi tiết */}
+          <div className="bg-white p-6 rounded-3xl border border-orange-200 hover:shadow-md transition-shadow">
             <h4 className="font-bold text-orange-800 mb-4">Phân khúc trung bình đến cận cao:</h4>
             <ul className="space-y-3">
-              <li className="flex items-center justify-between border-b border-orange-200/50 pb-2">
+              <li className="flex items-center justify-between border-b border-orange-100 pb-2">
                 <span className="text-stone-700 font-medium">Chai 50ml</span>
                 <span className="font-bold text-orange-600">30.000 – 45.000 VNĐ</span>
               </li>
-              <li className="flex items-center justify-between border-b border-orange-200/50 pb-2">
+              <li className="flex items-center justify-between border-b border-orange-100 pb-2">
                 <span className="text-stone-700 font-medium">Chai 100ml</span>
                 <span className="font-bold text-orange-600">60.000 – 75.000 VNĐ</span>
               </li>
-              <li className="flex items-center justify-between border-b border-orange-200/50 pb-2">
+              <li className="flex items-center justify-between border-b border-orange-100 pb-2">
                 <span className="text-stone-700 font-medium">Chai 250ml</span>
                 <span className="font-bold text-orange-600">90.000 – 120.000 VNĐ</span>
               </li>
@@ -119,15 +164,6 @@ export default function InteractiveLandingPage() {
                 <span className="font-bold text-orange-600">~ 150.000 VNĐ</span>
               </li>
             </ul>
-          </div>
-          <div className="bg-stone-50 p-5 rounded-2xl border border-stone-100 flex gap-4 items-start">
-            <div className="p-3 bg-orange-100 text-orange-600 rounded-xl"><Tag size={20} /></div>
-            <div>
-              <h4 className="font-bold text-stone-800 mb-1">Chính sách linh hoạt</h4>
-              <p className="text-stone-600 text-sm leading-relaxed">
-                Combo gia đình, ưu đãi trường học & tổ chức. Khuyến mãi theo mùa: "Back to School", Tết, Ngày Trái Đất. Giá xây dựng theo tâm lý: giữ hình ảnh chất lượng cao nhưng vẫn dễ tiếp cận.
-              </p>
-            </div>
           </div>
         </div>
       )
@@ -142,50 +178,70 @@ export default function InteractiveLandingPage() {
           <p className="text-lg font-semibold text-blue-800 leading-relaxed">
             ANMORA sử dụng chiến lược phân phối chọn lọc, nhằm đảm bảo sản phẩm tiếp cận đúng đối tượng khách hàng và duy trì ảnh hưởng thương hiệu.
           </p>
-          <div className="grid gap-5">
 
-            {/* 1. Giai đoạn đầu (Trực tuyến & Tiện lợi) */}
-            <div className="p-5 bg-blue-50 border border-blue-100 shadow-sm rounded-2xl hover:shadow-md transition-shadow">
-              <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2"><Globe size={20} className="text-blue-500" /> Giai đoạn đầu (Tập trung kênh trực tuyến)</h4>
-              <p className="text-stone-600 text-sm mb-4 leading-relaxed">
-                Sản phẩm tập trung vào các kênh trực tuyến như sàn thương mại điện tử và website chính thức, kết hợp với hệ thống cửa hàng tiện lợi. Đây là những kênh có chi phí hợp lý, dễ tiếp cận và phù hợp với hành vi tiêu dùng của nhóm khách hàng trẻ.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <div className="flex items-center gap-2 px-3 py-2 bg-white rounded-xl border border-blue-200 hover:-translate-y-1 transition-transform cursor-pointer shadow-sm">
+          {/* Banner Phân phối (Gộp Giai đoạn đầu và Giai đoạn sau) */}
+          <div className="bg-linear-to-br from-blue-50 to-indigo-50 rounded-3xl border border-blue-100 hover:shadow-md transition-shadow overflow-hidden">
+            <div className="w-full h-48 md:h-64 relative">
+              <img
+                src="https://img.freepik.com/free-photo/location-symbol-with-landscape-background_23-2149906273.jpg"
+                alt="Chiến lược phân phối ANMORA"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-blue-900/90 via-blue-900/30 to-transparent flex items-end p-6 md:p-8">
+                <h4 className="font-bold text-white flex items-center gap-2 text-xl md:text-2xl shadow-sm">
+                  <Globe size={28} className="text-blue-300" /> Lộ trình mở rộng phân phối
+                </h4>
+              </div>
+            </div>
+            <div className="p-6 md:p-8">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+                <div className="flex-1">
+                  <h5 className="font-bold text-blue-900 mb-2">Giai đoạn đầu (Trực tuyến & Tiện lợi)</h5>
+                  <p className="text-stone-600 text-sm leading-relaxed text-justify">
+                    Sản phẩm tập trung vào các kênh trực tuyến như sàn thương mại điện tử và website chính thức, kết hợp với hệ thống cửa hàng tiện lợi. Đây là những kênh có chi phí hợp lý, dễ tiếp cận và phù hợp với hành vi tiêu dùng của nhóm khách hàng trẻ.
+                  </p>
+                </div>
+                <div className="flex-1">
+                  <h5 className="font-bold text-blue-900 mb-2">Giai đoạn tiếp theo (Truyền thống)</h5>
+                  <p className="text-stone-600 text-sm leading-relaxed text-justify">
+                    Sản phẩm sẽ mở rộng sang các kênh truyền thống như <strong className="text-blue-800">siêu thị, cửa hàng tiện lợi và nhà thuốc</strong> nhằm gia tăng độ phủ và nâng cao độ tin cậy của thương hiệu.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {/* Card hiển thị các kênh trực tuyến */}
+            <div className="bg-white p-5 rounded-2xl border border-blue-100 hover:shadow-md transition-shadow">
+              <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2"><Globe size={18} className="text-blue-500" /> Nền tảng trực tuyến</h4>
+              <div className="flex flex-wrap gap-3 mt-4">
+                <div className="flex items-center gap-2 px-3 py-2 bg-stone-50 rounded-xl border border-blue-100 hover:-translate-y-1 transition-transform cursor-pointer shadow-sm">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopee_logo.svg/500px-Shopee_logo.svg.png" alt="Shopee" className="w-5 h-5 object-contain" />
                   <span className="font-bold text-sm text-stone-700">Shopee</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 bg-white rounded-xl border border-blue-200 hover:-translate-y-1 transition-transform cursor-pointer shadow-sm">
+                <div className="flex items-center gap-2 px-3 py-2 bg-stone-50 rounded-xl border border-blue-100 hover:-translate-y-1 transition-transform cursor-pointer shadow-sm">
                   <img src="https://img.lazcdn.com/g/tps/images/ims-web/TB1T7K2d8Cw3KVjSZFuXXcAOpXa.png" alt="Lazada" className="w-5 h-5 object-contain" />
                   <span className="font-bold text-sm text-stone-700">Lazada</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 bg-white rounded-xl border border-blue-200 hover:-translate-y-1 transition-transform cursor-pointer shadow-sm">
+                <div className="flex items-center gap-2 px-3 py-2 bg-stone-50 rounded-xl border border-blue-100 hover:-translate-y-1 transition-transform cursor-pointer shadow-sm">
                   <img src="https://static.vecteezy.com/system/resources/previews/066/712/310/non_2x/tiktok-shop-icon-logo-symbol-free-png.png" alt="TikTok Shop" className="w-5 h-5 object-contain" />
                   <span className="font-bold text-sm text-stone-700">TikTok Shop</span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-2 bg-white rounded-xl border border-blue-200 hover:-translate-y-1 transition-transform cursor-pointer shadow-sm">
-                  <Globe size={18} className="text-emerald-600" />
-                  <span className="font-bold text-sm text-stone-700">Website chính thức</span>
+                <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-xl border border-blue-100 hover:-translate-y-1 transition-transform cursor-pointer shadow-sm w-full">
+                  <Link size={18} className="text-blue-600" />
+                  <span className="font-bold text-sm text-blue-800">Website chính thức</span>
                 </div>
               </div>
             </div>
 
-            {/* 2. Giai đoạn tiếp theo (Truyền thống) */}
-            <div className="p-5 bg-blue-50 border border-blue-100 shadow-sm rounded-2xl hover:shadow-md transition-shadow">
-              <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2"><Store size={20} className="text-blue-500" /> Giai đoạn tiếp theo (Kênh truyền thống)</h4>
-              <p className="text-stone-600 text-sm ml-7 leading-relaxed">
-                Sản phẩm sẽ mở rộng sang các kênh truyền thống như <strong className="text-blue-800">siêu thị, cửa hàng tiện lợi và nhà thuốc</strong> nhằm gia tăng độ phủ và nâng cao độ tin cậy của thương hiệu.
-              </p>
-            </div>
-
-            {/* 3. Kênh cộng đồng (CSR) */}
-            <div className="p-5 bg-blue-50 border border-blue-200 shadow-sm rounded-2xl hover:shadow-md transition-shadow">
-              <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2"><HeartHandshake size={20} className="text-blue-600" /> Kênh phân phối cộng đồng (CSR)</h4>
-              <p className="text-stone-600 text-sm ml-7 leading-relaxed">
+            {/* Kênh cộng đồng (CSR) */}
+            <div className="bg-white p-5 rounded-2xl border border-blue-100 hover:shadow-md transition-shadow">
+              <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2"><HeartHandshake size={18} className="text-blue-500" /> Phân phối cộng đồng (CSR)</h4>
+              <p className="text-stone-600 text-sm leading-relaxed">
                 Hợp tác với <strong className="text-blue-800">các tổ chức phi lợi nhuận, trường học, bệnh viện và trung tâm bảo trợ trẻ em</strong> để cung cấp sản phẩm miễn phí cho các khu vực khó khăn. Điều này không chỉ giúp mở rộng phạm vi tiếp cận mà còn củng cố hình ảnh thương hiệu gắn liền với trách nhiệm xã hội.
               </p>
             </div>
-
           </div>
         </div>
       )
@@ -201,9 +257,42 @@ export default function InteractiveLandingPage() {
             Chiến dịch truyền thông đa dạng, kết hợp giữa nhận thức cộng đồng và tương tác mạng xã hội.
           </p>
 
+          {/* Hoạt động cộng đồng (Thiết kế dạng Banner Ảnh đính kèm 2 cột chữ) */}
+          <div className="bg-linear-to-br from-purple-50 to-fuchsia-50 rounded-3xl border border-purple-100 hover:shadow-md transition-shadow overflow-hidden">
+
+            {/* Phần 1: Banner Ảnh nằm ngang */}
+            <div className="w-full h-48 md:h-64 relative">
+              {/* Dùng thẻ img trực tiếp thay vì background-image để tránh lỗi 404/chiều cao */}
+              <img
+                src="/images/anmora-campaign.jpg"
+                alt="Hoạt động cộng đồng ANMORA"
+                className="w-full h-full object-cover"
+              />
+              {/* Lớp phủ gradient từ dưới lên để làm nổi bật tiêu đề đè lên ảnh */}
+              <div className="absolute inset-0 bg-linear-to-t from-purple-900/90 via-purple-900/30 to-transparent flex items-end p-6 md:p-8">
+                <h4 className="font-bold text-white flex items-center gap-2 text-xl md:text-2xl shadow-sm">
+                  <Heart size={28} className="text-purple-300" /> Hoạt động cộng đồng & Giá trị xã hội
+                </h4>
+              </div>
+            </div>
+
+            {/* Phần 2: Nội dung chữ dàn 2 cột rộng rãi phía dưới ảnh */}
+            <div className="p-6 md:p-8">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+                <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
+                  Không chỉ dừng lại ở giá trị sử dụng, ANMORA còn gắn liền với các hoạt động cộng đồng. Thông qua việc lan tỏa ý thức vệ sinh tay và các chương trình trao tặng sản phẩm ở vùng khó khăn, sản phẩm góp phần nâng cao điều kiện vệ sinh cá nhân và bảo vệ sức khỏe cộng đồng. Qua đó, ANMORA không chỉ là một sản phẩm tiêu dùng mà còn là một giải pháp mang ý nghĩa xã hội sâu sắc.
+                </p>
+                <p className="text-stone-600 text-sm leading-relaxed flex-1 text-justify">
+                  Thông qua sản phẩm nước rửa tay khô của mình, ANMORA mong muốn góp phần nâng cao nhận thức về vệ sinh tay, đồng thời hướng đến các hoạt động cộng đồng như trao tặng sản phẩm cho trẻ em ở vùng cao, giúp các em có thêm điều kiện bảo vệ sức khỏe trong cuộc sống hằng ngày. <strong className="text-purple-800">ANMORA tin rằng một đôi tay sạch không chỉ bảo vệ sức khỏe hôm nay, mà còn góp phần tạo nên một tương lai tốt đẹp hơn cho cộng đồng</strong>.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
           <div className="grid md:grid-cols-2 gap-4">
             {/* PR & Giáo dục */}
-            <div className="bg-purple-50 p-5 rounded-2xl border border-purple-100 hover:shadow-md transition-shadow">
+            <div className="bg-white p-5 rounded-2xl border border-purple-100 hover:shadow-md transition-shadow">
               <h4 className="font-bold text-purple-900 mb-3">Giáo dục & PR</h4>
               <ul className="space-y-2 text-sm text-stone-600">
                 <li className="flex items-start gap-2"><CheckCircle2 size={16} className="text-purple-500 shrink-0 mt-0.5" /> Video ngắn thói quen rửa tay.</li>
@@ -213,7 +302,7 @@ export default function InteractiveLandingPage() {
             </div>
 
             {/* Mạng xã hội */}
-            <div className="bg-purple-50 p-5 rounded-2xl border border-purple-100 hover:shadow-md transition-shadow">
+            <div className="bg-white p-5 rounded-2xl border border-purple-100 hover:shadow-md transition-shadow">
               <h4 className="font-bold text-purple-900 mb-3">Mạng xã hội (Digital)</h4>
               <ul className="space-y-2 text-sm text-stone-600">
                 <li className="flex items-start gap-2"><CheckCircle2 size={16} className="text-purple-500 shrink-0 mt-0.5" /> FB, TikTok, IG lan tỏa lifestyle.</li>
@@ -223,21 +312,8 @@ export default function InteractiveLandingPage() {
             </div>
           </div>
 
-          {/* Hoạt động cộng đồng */}
-          <div className="bg-purple-50 p-6 rounded-3xl border border-purple-100 hover:shadow-md transition-shadow">
-            <h4 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
-              <Heart size={20} className="text-purple-600" /> Hoạt động cộng đồng & Giá trị xã hội
-            </h4>
-            <p className="text-stone-600 text-sm leading-relaxed mb-3">
-              Không chỉ dừng lại ở giá trị sử dụng, ANMORA còn gắn liền với các hoạt động cộng đồng. Thông qua việc lan tỏa ý thức vệ sinh tay và các chương trình trao tặng sản phẩm ở vùng khó khăn, sản phẩm góp phần nâng cao điều kiện vệ sinh cá nhân và bảo vệ sức khỏe cộng đồng. Qua đó, ANMORA không chỉ là một sản phẩm tiêu dùng mà còn là một giải pháp mang ý nghĩa xã hội sâu sắc.
-            </p>
-            <p className="text-stone-600 text-sm leading-relaxed">
-              Thông qua sản phẩm nước rửa tay khô của mình, ANMORA mong muốn góp phần nâng cao nhận thức về vệ sinh tay, đồng thời hướng đến các hoạt động cộng đồng như trao tặng sản phẩm cho trẻ em ở vùng cao, giúp các em có thêm điều kiện bảo vệ sức khỏe trong cuộc sống hằng ngày. <strong className="text-purple-800">ANMORA tin rằng một đôi tay sạch không chỉ bảo vệ sức khỏe hôm nay, mà còn góp phần tạo nên một tương lai tốt đẹp hơn cho cộng đồng</strong>.
-            </p>
-          </div>
-
           {/* Kích thích mua hàng */}
-          <div className="bg-stone-50 p-5 rounded-2xl border border-stone-100 flex gap-4 items-start hover:shadow-md transition-shadow">
+          <div className="bg-white p-5 rounded-2xl border border-stone-200 flex gap-4 items-start hover:shadow-md transition-shadow">
             <div className="p-3 bg-purple-100 text-purple-600 rounded-xl shrink-0"><Gift size={20} /></div>
             <div>
               <h4 className="font-bold text-stone-800 mb-2">Kích thích mua hàng</h4>
@@ -484,13 +560,13 @@ export default function InteractiveLandingPage() {
 
             {/* Hotline & Email */}
             <div className="flex flex-col space-y-2 text-emerald-300/80 mt-2">
-              <a href="tel:+84376992808" className="flex items-center gap-3 hover:text-white transition-colors">
+              <a href="tel:+84908617666" className="flex items-center gap-3 hover:text-white transition-colors">
                 <Phone size={18} />
-                <span>Hotline: 0376 992 808</span>
+                <span>Hotline: 090 8617 666</span>
               </a>
-              <a href="mailto:we@anmoravietnam.com" className="flex items-center gap-3 hover:text-white transition-colors">
+              <a href="mailto:anmora06@gmail.com" className="flex items-center gap-3 hover:text-white transition-colors">
                 <Mail size={18} />
-                <span>Email: we@anmoravietnam.com</span>
+                <span>Email: anmora06@gmail.com</span>
               </a>
             </div>
           </div>
