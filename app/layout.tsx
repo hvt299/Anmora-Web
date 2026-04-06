@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "ANMORA | Thuần chay tinh khiết – Sạch dịu đôi tay",
   description: "Sự kiện ra mắt sản phẩm nước rửa tay khô thuần chay ANMORA.",
+  icons: {
+    icon: "/icon.ico",
+  },
 };
 
 export default function RootLayout({

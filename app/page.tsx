@@ -83,13 +83,13 @@ const InteractivePricing = () => {
                 initial={false}
                 animate={{
                   height: item.height,
-                  backgroundColor: activeIndex === idx ? "#ea580c" : "#fdba74",
+                  backgroundColor: activeIndex === idx ? "#f79e6e" : "#fdba74",
                   scale: activeIndex === idx ? 1.05 : 1
                 }}
                 transition={{ duration: 0.2 }}
                 className="w-12 md:w-20 rounded-t-2xl rounded-b-md shadow-md flex items-end justify-center pb-2 border-b-4 border-orange-900/20"
               >
-                <span className="text-white font-bold text-xs -rotate-90 md:rotate-0 mb-4 md:mb-0">{item.vol}</span>
+                <span className="text-black font-bold text-xs -rotate-90 md:rotate-0 mb-4 md:mb-0">{item.vol}</span>
               </motion.div>
             </div>
           ))}
